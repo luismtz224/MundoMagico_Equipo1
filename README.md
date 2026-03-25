@@ -1,4 +1,4 @@
-# Sistema de Gestión para el Salón de Eventos Mundo Mágico [cite: 36]
+# Sistema de Gestión para el Salón de Eventos Mundo Mágico
 
 ## Descripción del Proyecto
 Este proyecto consiste en el desarrollo de un Sistema de Gestión de Reservaciones y Operación para el salón de eventos infantiles Mundo Mágico. 
