@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Mobiliario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="sidebar-header">Menú Principal</div>
+            <ul>
+                <li>Administrar usuarios</li>
+                <li>Consultar disponibilidad</li>
+                <li>Registrar reservación</li>
+                <li>Registrar pagos</li>
+                <li>Generar contrato digital</li>
+                <li>Generar Reportes Financieros</li>
+                <li class="active">Gestionar Inventario</li>
+                <li>Gestionar Proveedores</li>
+                <li>Cerrar sesión</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h1>Gestionar Inventario de Mobiliario</h1>
+            
+            <div class="card">
+                <div class="form-container">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Nombre del Artículo:</label>
+                            <input type="text" id="mob-nombre" placeholder="Ej: Silla Tiffany Blanca">
+                        </div>
+                        <div class="input-group">
+                            <label>Cantidad en Existencia:</label>
+                            <input type="number" id="mob-cantidad" placeholder="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Estado actual:</label>
+                            <select id="mob-estado">
+                                <option value="Excelente">Excelente</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Dañado">Dañado (Requiere Reporte)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="actualizarInventario()">Actualizar Stock</button>
+                    </div>
+
+                    <div id="mensaje-sistema" class="error-box"></div>
+                </div>
+
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Artículo</th>
+                            <th>Existencia</th>
+                            <th>Estado</th>
+                            <th>Última Revisión</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-cuerpo">
+                        <tr>
+                            <td>Mesas Redondas</td>
+                            <td>25</td>
+                            <td>Excelente</td>
+                            <td>15/03/2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
