@@ -1,0 +1,59 @@
+<div class="modulo-container">
+    <header class="modulo-header">
+        <h1>Gestionar Inventario de Mobiliario</h1>
+        <p>Control de mesas, sillas y equipo del salón.</p>
+    </header>
+
+    <div class="filtros-seccion">
+        <input type="text" id="buscar-item" placeholder="Buscar artículo..." onkeyup="filtrarInventario()">
+        <button class="btn-secundario">Imprimir Reporte de Daños</button>
+    </div>
+
+    <table class="inventario-table">
+        <thead>
+            <tr>
+                <th>Artículo</th>
+                <th>Existencia Total</th>
+                <th>En Uso</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-inventario">
+            <tr>
+                <td>Silla Tiffany Blanca</td>
+                <td>200</td>
+                <td>150</td>
+                <td>Excelente</td>
+            </tr>
+            <tr>
+                <td>Mesa Redonda (10 pers)</td>
+                <td>25</td>
+                <td>15</td>
+                <td>Bueno</td>
+            </tr>
+            <tr>
+                <td>Mantelería Terciopelo</td>
+                <td>30</td>
+                <td>0</td>
+                <td>Limpieza requerida</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="button-group">
+        <button class="btn-primary" onclick="agregarArticulo()">Agregar nuevo artículo</button>
+        <button class="btn-primary" onclick="editarExistencia()">Editar existencias</button>
+    </div>
+</div>
+
+<style>
+    .modulo-container { padding: 20px; }
+    .filtros-seccion { margin-bottom: 20px; display: flex; gap: 10px; }
+    .filtros-seccion input { padding: 10px; width: 300px; border: 1px solid #ddd; border-radius: 4px; }
+    
+    .inventario-table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 20px; }
+    .inventario-table th, .inventario-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    .inventario-table th { background: #f8f9fa; color: #333; }
+    
+    .btn-secundario { padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; }
+</style>

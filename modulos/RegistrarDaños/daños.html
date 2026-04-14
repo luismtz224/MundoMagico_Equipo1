@@ -1,0 +1,56 @@
+<div class="modulo-container">
+    <header class="modulo-header">
+        <h1>Reporte de Daños y Siniestros</h1>
+        <p>Registra cualquier desperfecto en el mobiliario o instalaciones tras un evento.</p>
+    </header>
+
+    <div class="danos-grid">
+        <div class="card-reporte">
+            <h3>Registrar Incidente</h3>
+            <div class="input-group">
+                <label>Folio del Evento:</label>
+                <input type="text" id="folio-evento" placeholder="Ej: EVE-2026-001">
+            </div>
+            <div class="input-group">
+                <label>Artículo Afectado:</label>
+                <select id="articulo-danado">
+                    <option value="Silla Tiffany">Silla Tiffany</option>
+                    <option value="Mesa Redonda">Mesa Redonda</option>
+                    <option value="Mantelería">Mantelería</option>
+                    <option value="Instalaciones">Instalaciones / Inmueble</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Descripción del Daño:</label>
+                <textarea id="descripcion-dano" rows="4" placeholder="Describe lo sucedido..."></textarea>
+            </div>
+            <div class="input-group">
+                <label>Costo de Reparación/Reposición ($):</label>
+                <input type="number" id="costo-dano" placeholder="0.00">
+            </div>
+            <button class="btn-danger-report" onclick="guardarReporteDano()">Registrar Daño</button>
+        </div>
+
+        <div class="card-lista-danos">
+            <h3>Reportes Recientes</h3>
+            <div id="lista-danos-container">
+                <p style="color: #888; text-align: center;">No hay reportes recientes.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .danos-grid { display: grid; grid-template-columns: 400px 1fr; gap: 20px; margin-top: 20px; }
+    .card-reporte, .card-lista-danos { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.85rem; }
+    .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+    
+    .btn-danger-report { width: 100%; padding: 12px; background: #e74c3c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-danger-report:hover { background: #c0392b; }
+
+    .item-dano { border-left: 4px solid #e74c3c; padding: 15px; background: #fffcfc; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+    .item-dano h4 { margin: 0 0 5px 0; color: #333; }
+    .item-dano p { margin: 0; font-size: 0.9rem; color: #666; }
+</style>

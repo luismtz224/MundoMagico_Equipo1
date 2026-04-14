@@ -1,0 +1,59 @@
+<div class="modulo-container">
+    <header class="modulo-header">
+        <h1>Envío de Recordatorios</h1>
+        <p>Notifica a los clientes sobre sus próximos pagos y fechas de eventos.</p>
+    </header>
+
+    <div class="recordatorios-grid">
+        <div class="card-mensaje">
+            <h3>Redactar Notificación</h3>
+            <div class="input-group">
+                <label>Seleccionar Cliente:</label>
+                <select id="cliente-select" onchange="actualizarMensaje()">
+                    <option value="">Seleccione un cliente...</option>
+                    <option value="Julieta" data-fecha="20/04/2026" data-saldo="1500">Julieta (Boda)</option>
+                    <option value="Axel" data-fecha="25/04/2026" data-saldo="3000">Axel (XV Años)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Tipo de Recordatorio:</label>
+                <select id="tipo-recordatorio" onchange="actualizarMensaje()">
+                    <option value="pago">Aviso de Pago Pendiente</option>
+                    <option value="cita">Cita de Planeación</option>
+                    <option value="evento">Próximo Evento (Confirmación)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Mensaje Personalizado:</label>
+                <textarea id="mensaje-texto" rows="6"></textarea>
+            </div>
+            <div class="button-row">
+                <button class="btn-whatsapp" onclick="enviarSimulacion('WhatsApp')">Enviar por WhatsApp</button>
+                <button class="btn-email" onclick="enviarSimulacion('Correo')">Enviar por Correo</button>
+            </div>
+        </div>
+
+        <div class="card-log">
+            <h3>Historial de Envíos Hoy</h3>
+            <ul id="log-envios" class="log-lista">
+                <li class="log-vacio">No se han enviado mensajes hoy.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .recordatorios-grid { display: grid; grid-template-columns: 1fr 400px; gap: 20px; margin-top: 20px; }
+    .card-mensaje, .card-log { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.85rem; }
+    .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+    
+    .button-row { display: flex; gap: 10px; margin-top: 10px; }
+    .btn-whatsapp { flex: 1; padding: 12px; background: #25d366; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-email { flex: 1; padding: 12px; background: #534fff; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    
+    .log-lista { list-style: none; font-size: 0.85rem; }
+    .log-lista li { padding: 10px; border-bottom: 1px solid #eee; color: #555; }
+    .log-vacio { color: #888; text-align: center; padding: 20px; }
+</style>
