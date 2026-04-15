@@ -1,0 +1,55 @@
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Registrar Nuevo Usuario</h5>
+                </div>
+                <div class="card-body">
+                    <form id="formUsuario">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" id="nomUser" class="form-control" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            <input type="text" id="userLogin" class="form-control" placeholder="Ej. juan123" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rol</label>
+                            <select id="rolUser" class="form-select">
+                                <option value="Dueño">Dueño</option>
+                                <option value="Encargado">Encargado</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-success w-100" onclick="guardarUsuario()">
+                            <i class="bi bi-person-plus"></i> Guardar Usuario
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Usuarios en el Sistema</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaCuerpoUsuarios">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
