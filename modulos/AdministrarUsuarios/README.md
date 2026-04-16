@@ -1,4 +1,4 @@
-# Modulo: Administrar Usuarios
+# Módulo: Administrar Usuarios
 
 Permite registrar, visualizar y administrar los usuarios del sistema.
 
