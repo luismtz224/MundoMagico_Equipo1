@@ -1,4 +1,4 @@
-# Modulo: Generar Contrato
+# Módulo: Generar Contrato
 
 Permite generar contratos para clientes o servicios.
 
