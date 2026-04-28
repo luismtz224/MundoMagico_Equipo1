@@ -142,3 +142,26 @@ td {
 .login-card input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
 .btn-login { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
 .error-msg { color: red; font-size: 0.8rem; margin-top: 10px; display: none; }
+
+/* Bienvenida Card */
+.welcome-card {
+    background: white;
+    padding: 45px 40px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    width: 340px;
+    text-align: center;
+    display: none;
+    animation: fadeUp 0.5s ease;
+}
+.welcome-card h2 { font-size: 1.5rem; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; }
+.welcome-info { text-align: left; margin-bottom: 28px; }
+.welcome-info p { font-size: 0.95rem; color: #333; margin-bottom: 8px; }
+.welcome-info p span { font-weight: 600; color: #1a1a2e; }
+.btn-continuar { width: 100%; padding: 14px; background: #228be6; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+.btn-continuar:hover { background: #1971c2; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
