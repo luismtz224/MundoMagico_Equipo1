@@ -1,11 +1,10 @@
-// ── USUARIOS ─────────────────────────────────────────────────
 const express = require('express');
-const router = express.Router();
-const db = require('../db');
+const router  = express.Router();
+const db      = require('../db');
 
 // GET todos los usuarios
 router.get('/', (req, res) => {
-    db.query('SELECT id_usuario, NombreUsuario, tipo_usuario FROM USUARIOS', (err, results) => {
+    db.query('SELECT id_usuario, NombreCompleto, NombreUsuario, tipo_usuario FROM USUARIOS', (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);
     });
@@ -13,10 +12,13 @@ router.get('/', (req, res) => {
 
 // POST crear usuario
 router.post('/', (req, res) => {
-    const { NombreUsuario, Contraseña, tipo_usuario } = req.body;
+    const { NombreCompleto, NombreUsuario, Contrasena, tipo_usuario } = req.body;
+    if (!NombreUsuario || !Contrasena) {
+        return res.status(400).json({ error: 'Faltan datos' });
+    }
     db.query(
-        'INSERT INTO USUARIOS (NombreUsuario, Contraseña, tipo_usuario) VALUES (?, ?, ?)',
-        [NombreUsuario, Contraseña, tipo_usuario],
+        'INSERT INTO USUARIOS (NombreCompleto, NombreUsuario, Contraseña, tipo_usuario) VALUES (?, ?, ?, ?)',
+        [NombreCompleto, NombreUsuario, Contrasena, tipo_usuario],
         (err, result) => {
             if (err) return res.status(500).json({ error: err.message });
             res.json({ mensaje: 'Usuario creado', id: result.insertId });
