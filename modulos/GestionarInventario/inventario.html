@@ -6,7 +6,7 @@
 
     <div class="filtros-seccion">
         <input type="text" id="buscar-item" placeholder="Buscar artículo..." onkeyup="filtrarInventario()">
-        <button class="btn-secundario">Imprimir Reporte de Daños</button>
+        <button class="btn-secundario" onclick="window.print()">Imprimir Reporte</button>
     </div>
 
     <table class="inventario-table">
@@ -16,31 +16,13 @@
                 <th>Existencia Total</th>
                 <th>En Uso</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
-        <tbody id="tabla-inventario">
-            <tr>
-                <td>Silla Tiffany Blanca</td>
-                <td>200</td>
-                <td>150</td>
-                <td>Excelente</td>
-            </tr>
-            <tr>
-                <td>Mesa Redonda (10 pers)</td>
-                <td>25</td>
-                <td>15</td>
-                <td>Bueno</td>
-            </tr>
-            <tr>
-                <td>Mantelería Terciopelo</td>
-                <td>30</td>
-                <td>0</td>
-                <td>Limpieza requerida</td>
-            </tr>
-        </tbody>
+        <tbody id="tabla-inventario"></tbody>
     </table>
 
-    <div class="button-group">
+    <div class="button-group" style="margin-top:20px;">
         <button class="btn-primary" onclick="agregarArticulo()">Agregar nuevo artículo</button>
         <button class="btn-primary" onclick="editarExistencia()">Editar existencias</button>
     </div>
@@ -48,12 +30,12 @@
 
 <style>
     .modulo-container { padding: 20px; }
+    .modulo-header { margin-bottom: 20px; }
+    .modulo-header h1 { font-size: 1.8rem; font-weight: 700; }
     .filtros-seccion { margin-bottom: 20px; display: flex; gap: 10px; }
     .filtros-seccion input { padding: 10px; width: 300px; border: 1px solid #ddd; border-radius: 4px; }
-    
     .inventario-table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 20px; }
     .inventario-table th, .inventario-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
     .inventario-table th { background: #f8f9fa; color: #333; }
-    
     .btn-secundario { padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; }
 </style>

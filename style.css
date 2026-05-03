@@ -165,3 +165,7 @@ td {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+@media print {
+    .sidebar { display: none !important; }
+    .btn-primary, .btn-secundario, .filtros-seccion { display: none !important; }
+}
