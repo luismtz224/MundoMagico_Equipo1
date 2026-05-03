@@ -17,11 +17,11 @@ async function cargarInventario() {
                 <tr>
                     <td>${item.nombre_item}</td>
                     <td>${item.cantidad_total}</td>
-                    <td>—</td>
+                    <td>${item.en_uso}</td>
                     <td>${item.estado_actual}</td>
                     <td>
                         <button class="btn-primary" style="padding:5px 10px;font-size:0.8rem;"
-                            onclick="editarArticulo(${item.id_inventario}, ${item.cantidad_total}, '${item.estado_actual}')">
+                            onclick="editarArticulo(${item.id_inventario}, ${item.cantidad_total}, ${item.en_uso}, '${item.estado_actual}')">
                             Editar
                         </button>
                         <button style="padding:5px 10px;font-size:0.8rem;background:#e74c3c;color:white;border:none;border-radius:4px;cursor:pointer;margin-left:5px;"
@@ -39,6 +39,7 @@ async function cargarInventario() {
 async function agregarArticulo() {
     const nombre   = prompt('Nombre del artículo:');
     const cantidad = prompt('Cantidad total:');
+    const en_uso   = prompt('Cantidad en uso:');
     const estado   = prompt('Estado (Excelente, Bueno, Regular, Limpieza requerida):');
 
     if (!nombre || !cantidad || !estado) return;
@@ -47,7 +48,7 @@ async function agregarArticulo() {
         const res  = await fetch(`${INV_API}/inventario`, {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ nombre_item: nombre, cantidad_total: parseInt(cantidad), estado_actual: estado })
+            body:    JSON.stringify({ nombre_item: nombre, cantidad_total: parseInt(cantidad), en_uso: parseInt(en_uso) || 0, estado_actual: estado })
         });
         const data = await res.json();
         if (!res.ok) { alert(data.error || 'Error'); return; }
@@ -58,8 +59,9 @@ async function agregarArticulo() {
     }
 }
 
-async function editarArticulo(id, cantidadActual, estadoActual) {
+async function editarArticulo(id, cantidadActual, enUsoActual, estadoActual) {
     const cantidad = prompt('Nueva cantidad total:', cantidadActual);
+    const en_uso   = prompt('Cantidad en uso:', enUsoActual);
     const estado   = prompt('Nuevo estado:', estadoActual);
 
     if (!cantidad || !estado) return;
@@ -68,7 +70,7 @@ async function editarArticulo(id, cantidadActual, estadoActual) {
         const res  = await fetch(`${INV_API}/inventario/${id}`, {
             method:  'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ cantidad_total: parseInt(cantidad), estado_actual: estado })
+            body:    JSON.stringify({ cantidad_total: parseInt(cantidad), en_uso: parseInt(en_uso) || 0, estado_actual: estado })
         });
         const data = await res.json();
         if (!res.ok) { alert(data.error || 'Error'); return; }
