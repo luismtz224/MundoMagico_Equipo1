@@ -81,10 +81,12 @@ async function cargarModulo(nombre) {
 // ── PERMISOS POR ROL ─────────────────────────────────────────
 function aplicarPermisos(rol) {
     if (rol === 'Encargado') {
-        const itemUsuarios = document.getElementById('item-usuarios');
-        const itemReportes = document.getElementById('item-reportes');
-        if (itemUsuarios) itemUsuarios.style.display = 'none';
-        if (itemReportes) itemReportes.style.display = 'none';
+        const modulos = ['item-usuarios', 'item-inventario', 'item-cotizaciones', 
+                         'item-contratos', 'item-pagos', 'item-reportes', 'item-proveedores'];
+        modulos.forEach(id => {
+            const item = document.getElementById(id);
+            if (item) item.style.display = 'none';
+        });
     }
 }
  
