@@ -1,4 +1,5 @@
 <div class="modulo-container">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <header class="modulo-header">
         <h1>Generar Cotización Digital</h1>
         <p>Calcula el presupuesto para eventos de forma rápida.</p>
@@ -41,7 +42,10 @@
                 <span>TOTAL ESTIMADO:</span>
                 <span id="total-final">$0.00</span>
             </div>
-            <button class="btn-pdf" onclick="descargarPDF()">Descargar Cotización (PDF)</button>
+           <button onclick="descargarPDF()" class="btn-pdf">
+    Descargar Cotización (PDF)
+</button>
+</button>
         </div>
     </div>
 </div>
