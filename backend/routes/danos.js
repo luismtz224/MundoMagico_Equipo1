@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../db');
+const router  = express.Router();
+const db      = require('../db');
 
 router.get('/', (req, res) => {
-    db.query('SELECT * FROM REPORTE_DANOS', (err, results) => {
+    db.query('SELECT * FROM REPORTE_DANOS ORDER BY id_reportedanos DESC', (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);
     });
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
         USUARIOS_id_usuario, Descripcion, costo_estimado],
         (err, result) => {
             if (err) return res.status(500).json({ error: err.message });
-            res.json({ mensaje: 'Reporte guardado', id: result.insertId });
+            res.json({ mensaje: 'Reporte registrado', id: result.insertId });
         }
     );
 });
