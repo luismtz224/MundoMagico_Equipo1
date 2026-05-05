@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../db');
+const router  = express.Router();
+const db      = require('../db');
 
 router.get('/', (req, res) => {
     db.query('SELECT * FROM PROVEEDORES_EXTERNOS', (err, results) => {
@@ -11,6 +11,9 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const { nombre_empresa, servicio, contacto } = req.body;
+    if (!nombre_empresa || !servicio || !contacto) {
+        return res.status(400).json({ error: 'Faltan datos' });
+    }
     db.query(
         'INSERT INTO PROVEEDORES_EXTERNOS (nombre_empresa, servicio, contacto) VALUES (?, ?, ?)',
         [nombre_empresa, servicio, contacto],
