@@ -8,8 +8,14 @@
         <div class="card-pago">
             <h3>Nuevo Registro</h3>
             <div class="input-group">
-                <label>Folio del Contrato:</label>
-                <input type="text" id="folio-contrato" placeholder="Ej: CONT-001">
+                <label>Reservación / Cliente:</label>
+                <select id="reservacion-select" onchange="onReservacionChange()">
+                    <option value="">Cargando reservaciones...</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Concepto:</label>
+                <input type="text" id="concepto-pago" placeholder="Ej: Anticipo boda, Liquidación XV Años...">
             </div>
             <div class="input-group">
                 <label>Monto del Pago ($):</label>
@@ -27,24 +33,18 @@
         </div>
 
         <div class="card-historial">
-            <h3>Últimos Movimientos</h3>
+            <h3>Historial de Pagos</h3>
             <table class="pagos-table">
                 <thead>
                     <tr>
                         <th>Fecha</th>
-                        <th>Contrato</th>
+                        <th>Cliente</th>
+                        <th>Concepto</th>
                         <th>Monto</th>
                         <th>Método</th>
                     </tr>
                 </thead>
-                <tbody id="tabla-pagos-body">
-                    <tr>
-                        <td>12/04/2026</td>
-                        <td>CONT-005</td>
-                        <td>$2,500.00</td>
-                        <td>Efectivo</td>
-                    </tr>
-                </tbody>
+                <tbody id="tabla-pagos-body"></tbody>
             </table>
         </div>
     </div>
@@ -56,7 +56,6 @@
     .input-group { margin-bottom: 15px; }
     .input-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
     .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
-    
     .pagos-table { width: 100%; border-collapse: collapse; }
     .pagos-table th, .pagos-table td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.9rem; }
     .pagos-table th { color: #555; background: #fafafa; }

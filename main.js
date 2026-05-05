@@ -8,6 +8,7 @@ const MODULOS = {
     'contratos':     { carpeta: 'GenerarContrato',              archivo: 'contratos'     },
     'pagos':         { carpeta: 'RegistrarPagos',               archivo: 'pagos'         },
     'reportes':      { carpeta: 'ReportesFinancieros',          archivo: 'reportes'      },
+    'proveedores':   { carpeta: 'GestionarProveedores',         archivo: 'proveedores'   },
     'danos':         { carpeta: 'RegistrarDaños',               archivo: 'daños'         },
     'recordatorios': { carpeta: 'GenerarRecordatorios',         archivo: 'recordatorios' },
     'login':         { carpeta: 'login',                        archivo: 'login'         }

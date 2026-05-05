@@ -1,77 +1,127 @@
-<div class="container-fluid p-4">
-    <h2 class="mb-4">Reporte de Ingresos y Egresos</h2>
-    
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body text-center">
-                    <h6>Total Ingresos</h6>
-                    <h3>$45,000</h3>
-                </div>
-            </div>
+<div class="modulo-container">
+    <header class="modulo-header">
+        <h1>Reporte de Ingresos y Egresos</h1>
+        <p>Consulta el resumen financiero y el historial de movimientos.</p>
+    </header>
+
+    <!-- Tarjetas resumen -->
+    <div class="reportes-resumen">
+        <div class="card-reporte ingresos">
+            <div class="card-label">Total Ingresos</div>
+            <div class="card-amount" id="totalIngresos">$0</div>
         </div>
-        <div class="col-md-4">
-            <div class="card bg-danger text-white shadow">
-                <div class="card-body text-center">
-                    <h6>Total Egresos</h6>
-                    <h3>$12,500</h3>
-                </div>
-            </div>
+        <div class="card-reporte egresos">
+            <div class="card-label">Total Egresos</div>
+            <div class="card-amount" id="totalEgresos">$0</div>
         </div>
-        <div class="col-md-4">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body text-center">
-                    <h6>Saldo Neto</h6>
-                    <h3>$32,500</h3>
-                </div>
-            </div>
+        <div class="card-reporte saldo">
+            <div class="card-label">Saldo Neto</div>
+            <div class="card-amount" id="saldoNeto">$0</div>
         </div>
     </div>
 
-    <div class="card shadow">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Historial de Movimientos</h5>
-            <div class="d-flex gap-2">
-                <input type="date" class="form-control form-control-sm">
-                <button class="btn btn-secondary btn-sm">Filtrar</button>
+    <!-- Registrar egreso -->
+    <div class="reportes-egreso-form">
+        <h3>Registrar Egreso</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;">
+            <div>
+                <label>Concepto:</label>
+                <input type="text" id="egreso-concepto" placeholder="Ej: Pago de luz">
             </div>
-        </div>
-        <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Concepto</th>
-                        <th>Tipo</th>
-                        <th>Monto</th>
-                    </tr>
-                </thead>
-                <tbody id="listaReportes">
-                    <tr>
-                        <td>12/04/2026</td>
-                        <td>Apartado de Evento - Boda Familia Treviño</td>
-                        <td><span class="badge bg-success">Ingreso</span></td>
-                        <td>$5,000</td>
-                    </tr>
-                    <tr>
-                        <td>10/04/2026</td>
-                        <td>Pago de Luz Salón</td>
-                        <td><span class="badge bg-danger">Egreso</span></td>
-                        <td>$2,300</td>
-                    </tr>
-                    <tr>
-                        <td>08/04/2026</td>
-                        <td>Liquidación de Evento - XV Años Ana</td>
-                        <td><span class="badge bg-success">Ingreso</span></td>
-                        <td>$15,000</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="text-end">
-                <button class="btn btn-outline-dark" onclick="imprimirReporte()">
-                    <i class="bi bi-printer"></i> Descargar PDF
-                </button>
+            <div>
+                <label>Categoría:</label>
+                <select id="egreso-categoria">
+                    <option value="Servicios">Servicios (luz, agua)</option>
+                    <option value="Proveedor">Proveedor</option>
+                    <option value="Mantenimiento">Mantenimiento</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Otro">Otro</option>
+                </select>
             </div>
+            <div>
+                <label>Monto ($):</label>
+                <input type="number" id="egreso-monto" placeholder="0.00">
+            </div>
+            <div>
+                <label>Fecha:</label>
+                <input type="date" id="egreso-fecha">
+            </div>
+            <button class="btn-primary" style="background:#e74c3c;" onclick="registrarEgreso()">Agregar</button>
         </div>
     </div>
+
+    <!-- Filtro -->
+    <div class="reportes-toolbar">
+        <span class="toolbar-titulo">Historial de Movimientos</span>
+        <div class="toolbar-acciones">
+            <label>Filtrar por fecha:</label>
+            <input type="date" id="filtroFecha">
+            <button class="btn-primary" onclick="aplicarFiltro()">Filtrar</button>
+            <button class="btn-secondary" onclick="limpiarFiltro()">Limpiar</button>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="reportes-tabla-wrap">
+        <table class="reportes-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente / Categoría</th>
+                    <th>Concepto</th>
+                    <th>Tipo</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaReportes">
+                <tr><td colspan="6" class="tabla-empty">Cargando movimientos…</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="reportes-footer">
+        <button class="btn-pdf" onclick="descargarReportePDF()">⬇ Descargar PDF</button>
+    </div>
 </div>
+
+<style>
+    .reportes-resumen { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+    .card-reporte { background:white; padding:20px 24px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+    .card-label { font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#888; margin-bottom:6px; }
+    .card-amount { font-size:28px; font-weight:700; }
+    .card-reporte.ingresos .card-amount { color:#27ae60; }
+    .card-reporte.egresos  .card-amount { color:#e74c3c; }
+    .card-reporte.saldo    .card-amount { color:#2980b9; }
+
+    .reportes-egreso-form { background:white; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); margin-bottom:20px; }
+    .reportes-egreso-form h3 { margin:0 0 15px 0; font-size:1rem; }
+    .reportes-egreso-form label { display:block; font-size:0.85rem; font-weight:bold; margin-bottom:4px; }
+    .reportes-egreso-form input, .reportes-egreso-form select { width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; }
+
+    .reportes-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+    .toolbar-titulo { font-size:1rem; font-weight:700; color:#333; }
+    .toolbar-acciones { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .toolbar-acciones label { font-size:0.9rem; font-weight:bold; color:#555; }
+    .toolbar-acciones input[type="date"] { padding:8px 10px; border:1px solid #ddd; border-radius:4px; }
+    .btn-secondary { padding:8px 16px; background:#eee; color:#555; border:none; border-radius:4px; font-size:0.9rem; font-weight:600; cursor:pointer; }
+    .btn-secondary:hover { background:#ddd; }
+
+    .reportes-tabla-wrap { background:white; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); overflow:hidden; margin-bottom:20px; }
+    .reportes-table { width:100%; border-collapse:collapse; }
+    .reportes-table th { background:#fafafa; padding:12px 16px; text-align:left; font-size:0.85rem; font-weight:700; color:#555; border-bottom:1px solid #eee; }
+    .reportes-table td { padding:12px 16px; font-size:0.9rem; border-bottom:1px solid #eee; }
+    .reportes-table tbody tr:last-child td { border-bottom:none; }
+    .reportes-table tbody tr:hover { background:#fafafa; }
+    .tabla-empty { text-align:center; padding:40px; color:#aaa; font-size:0.9rem; }
+
+    .badge-ingreso { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; background:#e8f8f0; color:#27ae60; }
+    .badge-egreso  { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; background:#fde8e8; color:#e74c3c; }
+    .monto-ingreso { color:#27ae60; font-weight:700; }
+    .monto-egreso  { color:#e74c3c; font-weight:700; }
+
+    .reportes-footer { display:flex; justify-content:flex-end; }
+    .btn-pdf { padding:10px 22px; background:#e74c3c; color:white; border:none; border-radius:6px; font-size:0.9rem; font-weight:600; cursor:pointer; }
+    .btn-pdf:hover { opacity:0.88; }
+</style>
