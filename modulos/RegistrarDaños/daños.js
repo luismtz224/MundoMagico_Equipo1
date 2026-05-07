@@ -1,4 +1,4 @@
-var DANOS_API  = 'http://localhost:3000';
+var DANOS_API  = 'https://mundomagicoequipo1-production.up.railway.app';
 var _reservas  = [];
 var _clientes  = [];
 var _inventario = [];

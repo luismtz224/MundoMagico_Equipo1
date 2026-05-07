@@ -1,4 +1,4 @@
-var CONT_API = 'http://localhost:3000';
+var CONT_API = 'https://mundomagicoequipo1-production.up.railway.app';
 
 function actualizarVistaPrevia() {
     const cliente  = document.getElementById('cliente-nombre').value  || "[NOMBRE DEL CLIENTE]";

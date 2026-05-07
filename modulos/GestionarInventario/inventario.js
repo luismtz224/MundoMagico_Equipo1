@@ -1,4 +1,4 @@
-var INV_API = 'http://localhost:3000';
+var INV_API = 'https://mundomagicoequipo1-production.up.railway.app';
 
 async function cargarInventario() {
     try {

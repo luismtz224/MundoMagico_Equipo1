@@ -1,4 +1,4 @@
-var PROV_API = 'http://localhost:3000';
+var PROV_API = 'https://mundomagicoequipo1-production.up.railway.app';
 
 async function cargarProveedores() {
     try {

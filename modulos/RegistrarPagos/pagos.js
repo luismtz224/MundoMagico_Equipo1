@@ -1,4 +1,4 @@
-var PAGOS_API = 'http://localhost:3000';
+var PAGOS_API = 'https://mundomagicoequipo1-production.up.railway.app';
 var _clientes  = [];
 var _reservas  = [];
 

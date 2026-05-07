@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000';
+const API = 'https://mundomagicoequipo1-production.up.railway.app';
 
 async function cargarPagos() {
     try {

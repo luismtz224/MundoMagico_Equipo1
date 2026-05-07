@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://localhost:3000';
+const BACKEND_URL = 'https://mundomagicoequipo1-production.up.railway.app';
  
 // ── MAPEO DE MÓDULOS ─────────────────────────────────────────
 const MODULOS = {

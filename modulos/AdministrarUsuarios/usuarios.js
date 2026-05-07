@@ -1,4 +1,4 @@
-var USR_API  = 'http://localhost:3000';
+var USR_API  = 'https://mundomagicoequipo1-production.up.railway.app';
 var _usuarios = [];
 var _modoEditar = false;
 

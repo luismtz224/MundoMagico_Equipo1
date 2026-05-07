@@ -1,4 +1,4 @@
-var REPORTES_API = 'http://localhost:3000';
+var REPORTES_API = 'https://mundomagicoequipo1-production.up.railway.app';
 var _movimientos = [];
 var _resumen     = {};
 
