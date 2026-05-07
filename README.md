@@ -11,10 +11,10 @@ El propósito principal es digitalizar y automatizar los procesos operativos, co
 * Implementar recordatorios automáticos de pagos y eventos próximos.
 
 ## Arquitectura y Tecnologías 
-* **Frontend:** HTML, CSS, JavaScript.
-* **Backend:** Python.
+* **Frontend:** HTML, CSS.
+* **Backend:** JavaScript (Node.js).
 * **Base de Datos:** MySQL.
-* **Infraestructura:** Servidor en la nube (AWS).
+* **Infraestructura:** Railway (Base de datos en la nube) y Netlify (hospedaje del Frontend).
 
 ## Metodología
 Para el desarrollo de este proyecto se utiliza la metodología RUP (Rational Unified Process).
