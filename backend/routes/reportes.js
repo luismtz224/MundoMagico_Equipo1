@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router  = require('express').Router();
 const db      = require('../db');
 
 router.get('/', (req, res) => {
@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
         params.push(fecha);
     }
 
-    // Query ingresos
     const sqlIngresos = `
         SELECT
             p.id_pagos,
@@ -22,14 +21,13 @@ router.get('/', (req, res) => {
             p.metodo_pago,
             r.tipo_evento,
             cl.NombreCompleto
-        FROM pagos p
-        LEFT JOIN reservaciones r  ON r.id_reservaciones = p.RESERVACIONES_id_reservaciones
-        LEFT JOIN clientes cl      ON cl.id_clientes = r.COTIZACIONES_CLIENTES_id_clientes
+        FROM PAGOS p
+        LEFT JOIN RESERVACIONES r  ON r.id_reservaciones = p.RESERVACIONES_id_reservaciones
+        LEFT JOIN CLIENTES cl      ON cl.id_clientes = r.COTIZACIONES_CLIENTES_id_clientes
         ${whereClause}
         ORDER BY p.fecha_pago DESC
     `;
 
-    // Query egresos
     const whereEgreso = fecha ? 'WHERE DATE(fecha_egreso) = ?' : '';
     const sqlEgresos  = `SELECT * FROM EGRESOS ${whereEgreso} ORDER BY fecha_egreso DESC`;
 
@@ -45,7 +43,7 @@ router.get('/', (req, res) => {
             const movimientos = [
                 ...pagos.map(p => ({
                     fecha    : p.fecha,
-                    concepto : p.concepto || (p.tipo_evento ? `Pago – ${p.tipo_evento}` : 'Pago de Evento'),
+                    concepto : p.concepto || (p.tipo_evento ? `Pago - ${p.tipo_evento}` : 'Pago de Evento'),
                     cliente  : p.NombreCompleto || '—',
                     tipo     : 'Ingreso',
                     monto    : parseFloat(p.monto) || 0,
@@ -71,7 +69,6 @@ router.get('/', (req, res) => {
     });
 });
 
-// POST registrar egreso
 router.post('/egreso', (req, res) => {
     const { concepto, monto, fecha_egreso, categoria } = req.body;
     if (!concepto || !monto || !fecha_egreso) {
