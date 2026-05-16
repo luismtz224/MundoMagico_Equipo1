@@ -1,13 +1,26 @@
 <div class="modulo-container">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <header class="modulo-header">
         <h1>Generar Cotización Digital</h1>
-        <p>Calcula el presupuesto para eventos de forma rápida.</p>
+        <p>Crea una cotización personalizada para el cliente.</p>
     </header>
 
     <div class="cotizacion-grid">
         <div class="card-formulario">
-            <h3>Datos del Evento</h3>
+            <h3>Datos del Cliente</h3>
+            <div class="input-group">
+                <label>Nombre Completo:</label>
+                <input type="text" id="cot-nombre" placeholder="Ej. María García" oninput="actualizarResumen()">
+            </div>
+            <div class="input-group">
+                <label>Teléfono:</label>
+                <input type="text" id="cot-telefono" placeholder="844-123-4567">
+            </div>
+            <div class="input-group">
+                <label>Correo:</label>
+                <input type="text" id="cot-correo" placeholder="correo@ejemplo.com">
+            </div>
+
+            <h3 style="margin-top:20px;">Datos del Evento</h3>
             <div class="input-group">
                 <label>Tipo de Evento:</label>
                 <select id="tipo-evento" onchange="calcularTotal()">
@@ -18,6 +31,10 @@
                 </select>
             </div>
             <div class="input-group">
+                <label>Fecha Tentativa:</label>
+                <input type="date" id="cot-fecha" onchange="actualizarResumen()">
+            </div>
+            <div class="input-group">
                 <label>Número de Invitados:</label>
                 <input type="number" id="invitados" value="50" oninput="calcularTotal()">
             </div>
@@ -25,27 +42,43 @@
                 <label>Platillo por persona ($):</label>
                 <input type="number" id="costo-platillo" value="250" oninput="calcularTotal()">
             </div>
+            <div class="input-group">
+                <label>Servicios adicionales ($):</label>
+                <input type="number" id="cot-extras" value="0" placeholder="Decoración, música, etc." oninput="calcularTotal()">
+            </div>
+            <div class="input-group">
+                <label>Notas adicionales:</label>
+                <textarea id="cot-notas" rows="3" placeholder="Detalles especiales del evento..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:4px;font-family:inherit;"></textarea>
+            </div>
         </div>
 
         <div class="card-resumen">
             <h3>Resumen de Presupuesto</h3>
+            <div style="background:#f8f9fa;padding:15px;border-radius:6px;margin-bottom:15px;">
+                <p style="font-weight:bold;margin-bottom:5px;" id="resumen-cliente">Cliente: —</p>
+                <p style="color:#888;font-size:0.85rem;" id="resumen-fechaevento">Fecha: —</p>
+            </div>
             <div class="detalle-fila">
                 <span>Renta del Salón:</span>
-                <span id="resumen-renta">$0.00</span>
+                <span id="resumen-renta">$0</span>
             </div>
             <div class="detalle-fila">
                 <span>Banquete:</span>
-                <span id="resumen-banquete">$0.00</span>
+                <span id="resumen-banquete">$0</span>
+            </div>
+            <div class="detalle-fila">
+                <span>Servicios adicionales:</span>
+                <span id="resumen-extras">$0</span>
             </div>
             <hr>
             <div class="detalle-fila total">
                 <span>TOTAL ESTIMADO:</span>
-                <span id="total-final">$0.00</span>
+                <span id="total-final">$0</span>
             </div>
-           <button onclick="descargarPDF()" class="btn-pdf">
-    Descargar Cotización (PDF)
-</button>
-</button>
+            <div id="cot-status" style="font-size:0.85rem;margin:10px 0;text-align:center;"></div>
+            <button onclick="guardarYDescargar()" class="btn-pdf">
+                Guardar y Descargar PDF
+            </button>
         </div>
     </div>
 </div>
@@ -58,5 +91,6 @@
     .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
     .detalle-fila { display: flex; justify-content: space-between; margin-bottom: 10px; color: #555; }
     .total { font-weight: bold; color: #534fff; font-size: 1.2rem; margin-top: 15px; }
-    .btn-pdf { width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+    .btn-pdf { width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    .btn-pdf:hover { background: #218838; }
 </style>
